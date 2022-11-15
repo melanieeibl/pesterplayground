@@ -1,0 +1,27 @@
+trigger:
+- main
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+
+- task: PowerShell@2
+  inputs:
+    targetType: filePath
+    filePath: '$(System.DefaultWorkingDirectory)/pipeline/pester.ps1'
+    arguments: '-TestResultsFilePath $(System.DefaultWorkingDirectory)/test-pester.xml 
+                -CodeCoverageResultsFilePath $(System.DefaultWorkingDirectory)/pester-coverage.xml'
+    pwsh: true
+
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'NUnit'
+    testResultsFiles: '$(System.DefaultWorkingDirectory)/test-pester.xml'
+
+- task: PublishCodeCoverageResults@1
+  inputs:
+    codeCoverageTool: 'JaCoCo'
+    summaryFileLocation: '$(System.DefaultWorkingDirectory)/pester-coverage.xml'
+    pathToSources: '$(System.DefaultWorkingDirectory)'
+    failIfCoverageEmpty: true
