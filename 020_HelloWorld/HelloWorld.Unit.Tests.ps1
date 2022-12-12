@@ -5,8 +5,7 @@ BeforeAll {
     . $PSScriptRoot\HelloWorld.ps1
 }
 
-# Describe "Weitere Strukturierungsebene" {
-Context "Hello World" -Tag "UnitTest" {
+Describe "Hello World" -Tag "UnitTest" {
     It 'Output Should Be Hello World!' {
         # Act
         $ret = Write-HelloWorld
@@ -15,4 +14,3 @@ Context "Hello World" -Tag "UnitTest" {
         $ret | Should -Be 'Hello World!'
     }
 }
-# }

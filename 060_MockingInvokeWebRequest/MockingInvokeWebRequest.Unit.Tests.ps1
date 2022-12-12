@@ -6,6 +6,6 @@ Describe 'Mocking native commands' -Tag "UnitTest" {
 
         Mock Invoke-WebRequest { "$args ist offline ;-)" }
 
-        GetHTTPHeader -url 'https://google.de' | Write-Host -BackgroundColor Red
+        GetHTTPHeader -url 'https://goooooooooooooogle.de' | Write-Host -BackgroundColor DarkYellow
     }
 }

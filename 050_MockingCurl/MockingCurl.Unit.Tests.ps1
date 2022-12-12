@@ -11,11 +11,11 @@ Describe 'Mocking native commands' -Tag "UnitTest" {
 
         Mock curl { Write-Host "$args" }
 
-        GetHTTPHeader -url 'https://gooogle.com'
+        GetHTTPHeader -url 'https://gooooooooooooooooooogle.com'
 
-        Should -Invoke -CommandName 'curl' -Exactly -Times 1 -ParameterFilter { $args[0] -eq '--url' -and $args[1] -eq 'https://gooogle.com' }
+        Should -Invoke -CommandName 'curl' -Exactly -Times 1 -ParameterFilter { $args[0] -eq '--url' -and $args[1] -eq 'https://gooooooooooooooooooogle.com' }
 
         # By converting args to string (will concat using space by default) you can match a pattern if order might change. remember linebreaks
-        Should -Invoke -CommandName 'curl' -Exactly -Times 1 -ParameterFilter { "$args" -match '--url https://gooogle.com -I' }
+        Should -Invoke -CommandName 'curl' -Exactly -Times 1 -ParameterFilter { "$args" -match '--url https://gooooooooooooooooooogle.com -I' }
     }
 }

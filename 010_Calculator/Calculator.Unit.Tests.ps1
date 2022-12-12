@@ -3,11 +3,11 @@ BeforeAll {
     . $PSScriptRoot\Calculator.ps1
 }
 
-Describe 'Calculator' -Tag "UnitTest" {
-    Context 'When calling add' {
+Context 'Calculator' -Tag "UnitTest" {
+    Describe 'When calling add' {
         It '<a> plus <b> should equal <c>' -ForEach @(
             @{ a = 4; b = 5; c = 9}
-            @{ a = 9; b = 9; c = 17}
+            @{ a = 9; b = 9; c = 18}
             @{ a = 7; b = 5; c = 12}
             @{ a = 40; b = 50; c = 90}
         ) {
@@ -19,7 +19,7 @@ Describe 'Calculator' -Tag "UnitTest" {
         }
     }
 
-    Context 'When calling subtract' {
+    Describe 'When calling subtract' {
         It '7 minus 3 should equal 4' {
             subtract -a 7 -b 3 | Should -Be 4
         }
@@ -29,7 +29,7 @@ Describe 'Calculator' -Tag "UnitTest" {
         }
     }
 
-    Context 'When calling multiply' {
+    Describe 'When calling multiply' {
         It '7 times 3 should equal 21' {
             multiply -a 7 -b 3 | Should -Be 21
         }
@@ -39,7 +39,7 @@ Describe 'Calculator' -Tag "UnitTest" {
         }
     }
     
-    Context 'When calling divide' {
+    Describe 'When calling divide' {
         It '21 divided by 3 should equal 7' {
             divide -a 21 -b 3 | Should -Be 7
         }
